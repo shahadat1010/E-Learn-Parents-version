@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>{%block title%}{%endblock%}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/master_css.css' %}">
+
+  </head>
+  <body>
+    <!-- navigation bar -->
+              <nav class="navbar navbar-expand-lg  navbar-light bg-light fixed-top scrolling-navbar">
+                <div class="container" >
+                      <a class="navbar-brand" href="{% url 'index' %}" style="color:#ff5722;" >Home</a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                           aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                       </button>
+                      <div class="collapse navbar-collapse" id="basicExampleNav" >
+                        <ul class=" navbar-nav  mr-auto smooth-scroll " >
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'curriculum:standard_list' %}">Curriculum</a>
+                                </li>
+                                {% if user.is_superuser %}
+                                <li class="nav-item ">
+                                   <a class="nav-link" href="{% url 'admin:index' %}">Admin</span> </a>
+                                </li>
+                                {%endif%}
+                                {% if user.is_authenticated %}
+                                    <li class="nav-item  ">
+                                     <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{% url 'user_login' %}">Login</a>
+                                    </li>
+                                    <li class="nav-item " >
+                                       <a class="nav-link" href="{% url 'register' %}">Register</span> </a>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="https://github.com/Srishty143/Teaching-Blog">GitHub</a>
+                                </li>
+                                <li class="nav-item">
+                                   <a class="nav-link" href="https://www.youtube.com/c/LearningBots">Youtube</a>
+                                </li>
+
+                        </ul>
+                      </div>
+                </div>
+              </nav>
+          {% block image_block %}
+          {% endblock %}
+
+
+    <div class="container">
+        {%block content%}
+        {%endblock%}
+    </div>
+
+    <br>
+    
+
+    
+
+        <div class="footer-copyright text-center py-3">
+          <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.7261008173473!2d90.38771691426531!3d23.757144794437124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a15ebeead5%3A0x9cf75b89d67de6b4!2s74%20Green%20Rd%2C%20Dhaka%201215!5e0!3m2!1sen!2sbd!4v1650125670230!5m2!1sen!2sbd" width="1050" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
+      </div>
+      <br>
+      <br>
+
+    <footer class="page-footer" style="background-color:#b2ebf2;">
+      <div class="container">
+        <div class="row mt-4">
+                  <div class="col-md-5 mt-5">
+                    <h3 style="text-align: center;color: firebrick;"><b> About This Website </b></h3> <br>
+                    <p style="text-align: center;"><b><i> A online learning platform is a webspace or portal for educational content 
+                      and resources that offers a student everything they need in one place: 
+                      lectures, resources, opportunities to meet and chat with other students, and more. 
+                      It is also an excellent way for the student and the teacher to monitor student progress.</i></b> </p>
+                  </div>
+                  
+                  <div class="col-md-5 mt-5 container">
+                    <h3 style="text-align: center;    color: firebrick;"><b>We Offers </b> </h3><br>
+                    <ul >
+                      <li><b><i>The comfort of working from home</i></b></li>
+                      <li><b><i>Self-paced learning</i></b></li>
+                      <li><b><i>Improved technical, communication, and critical thinking skills</i></b></li>
+                      <li><b><i>Lower costs</i></b></li>
+                      <li><b><i>Better time management skills</i></b> </li>
+
+                    </ul>
+          </div>
+          <div class="col-md-5 mt-5 container">
+                    <h2 style="text-align: center;color: firebrick;"><b>Contact Us</b></h2>
+                    <ul>
+                      <li><b><i>Address: 74 Green Road,Dhaka 1215, Bangladesh</i></b></li>
+                      <li><b><i>Abhi@gmail.com</i></b></li>
+                      <li><b><i>01723456890</i></b></li>
+                    </ul>
+          </div>
+</div>
+
+<div class="footer-copyright text-center py-3">
+  <h4><b><p style="color: rgb(86, 8, 8);">© 2022 Copyright: teaching_blog.com</b></p></h4>
+</div>
+</div>
+
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>
